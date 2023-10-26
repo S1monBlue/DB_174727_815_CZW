@@ -1,0 +1,7 @@
+1.CREATE TABLE postac (id_postaci INT NOT NULL AUTO_INCREMENT, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE,wiek TINYINT, PRIMARY KEY (id_postaci));
+1a. INSERT INTO postac (nazwa,rodzaj,data_ur,wiek) VALUES ('Bjorn','wiking','1998-06-06','20');
+INSERT INTO postac (nazwa,rodzaj,data_ur,wiek) VALUES ('Drozd','ptak','1998-01-01','24');
+INSERT INTO postac (nazwa,rodzaj,data_ur,wiek) VALUES ('Tesciowa','kobieta','1962-01-01','24');
+2. CREATE TABLE walizka (id_walizki INT NOT NULL PRIMARY KEY AUTO_INCREMENT, pojemnosc TINYINT, kolor ENUM('rozowy','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY(id_wlasciciela) REFERENCES postac(id_postaci));
+2a. ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
+
