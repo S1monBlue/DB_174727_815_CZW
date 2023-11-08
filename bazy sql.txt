@@ -4,4 +4,29 @@ INSERT INTO postac (nazwa,rodzaj,data_ur,wiek) VALUES ('Drozd','ptak','1998-01-0
 INSERT INTO postac (nazwa,rodzaj,data_ur,wiek) VALUES ('Tesciowa','kobieta','1962-01-01','24');
 2. CREATE TABLE walizka (id_walizki INT NOT NULL PRIMARY KEY AUTO_INCREMENT, pojemnosc TINYINT, kolor ENUM('rozowy','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY(id_wlasciciela) REFERENCES postac(id_postaci));
 2a. ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
+2b.INSERT INTO walizka (pojemnosc, kolor, id_wlasciciela) VALUES (30, 'czerwony', 1);
+INSERT INTO walizka (pojemnosc, id_wlasciciela) VALUES (27, 3);
+
+
+3.1. CREATE TABLE izba (adres_budynku varchar(20) NOT NULL, nazwa_izby varchar(35) NOT NULL, metraz int unsigned, wlasciciel int, PRIMARY KEY (adres_budynku, nazwa_izby) FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci) ON DELETE SET NULL);
+3.2. ALTER TABLE izba ADD kolor_izby varchar(25) AFTER 'metraz';
+ALTER TABLE izba ALTER kolor_izby SET DEFAULT 'czarny';
+3.3 INSERT INTO izba (adres_budynku, nazwa_izby) VALUES ('ul. Malinowa 2/4', 'spizarnia');
+
+
+ZAD 4
+4.1. CREATE TABLE przetwory (id_przetworu int PRIMARY KEY AUTO_INCREMENT, rok_produkcji YEAR(4), id_wykonawcy int, FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci), zawartosc varchar(45), dodatek varchar(45), id_konsumenta int, FOREIGN KEY (id_konsumenta) REFERENCES postac(id_postaci));
+4.2. INSERT INTO przetwory (zawartosc) VALUES ('bigos');
+
+ZAD 5
+5.1. INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ('Arne', 'wiking', '1977-09-10', 41), ('Frode', 'wiking', '1979-01-21', 39), ('Gorm', 'wiking', '1970-11-17', 48), ('Halfdan', 'wiking', '1980-04-09', 38), ('Bo', 'wiking', '1976-11-11', 42);
+5.2. CREATE TABLE statek (nazwa_statku varchar(40) PRIMARY KEY, rodzaj_statku ENUM('karli', 'sneki', 'drakar'), data_wodowania DATE, max_ladownosc int unsigned);
+5.3. INSERT INTO statek (nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('Sikorka', 'karli', '1990-07-11', 1500), ('Sokół', 'drakar', '1993-02-22', 9600);
+5.4. ALTER TABLE postac ADD funkcja varchar(30);
+5.5. UPDATE postac SET funkcja = 'kapitan' WHERE nazwa = 'Bjorn';
+5.6. ALTER TABLE postac ADD lodz VARCHAR(30), FOREIGN KEY (lodz) REFERENCES statek(nazwa_statku);
+5.7. INSERT INTO postac (lodz) VALUES ('Sokół') WHERE rodzaj = 'wiking';
+INSERT INTO postac (lodz) VALUES ('Sikorka') WHERE rodzaj = 'ptak';
+5.8. DELETE FROM izba WHERE nazwa_izby = 'spizarnia';
+5.9. DROP TABLE izba;
 
