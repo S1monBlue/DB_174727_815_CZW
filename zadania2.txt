@@ -1,0 +1,12 @@
+1.
+a)
+b)
+ALTER TABLE walizka DROP FOREIGN KEY walizka_ibfk_1;
+ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
+ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
+ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
+ALTER TABLE postac MODIFY id_postaci int(28);
+ ALTER TABLE postac DROP PRIMARY KEY;
+2.
+a) ALTER TABLE postac ADD posel varchar(11);
+
