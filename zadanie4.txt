@@ -1,0 +1,40 @@
+SKWAREK
+
+1.1
+SELECT AVG(waga) FROM kreatura WHERE rodzaj = "wiking";
+1.2
+SELECT AVG(waga) as srednia_waga, COUNT(rodzaj) as liczba_kreatur,rodzaj FROM kreatura GROUP B
+Y rodzaj;
+1.3
+SELECT COUNT(rodzaj) as liczba_kreatur, AVG(2023-year(dataUr))as Wiek FROM kreatura GROUP BY rodzaj;
+
+DYMEK
+2.1
+SELECT SUM(waga) as WAGA, rodzaj FROM zasob GROUP BY rodzaj
+2.2
+SELECT nazwa,AVG(waga) FROM zasob WHERE ilosc >= 4 GROUP BY nazwa HAVING SUM(waga)>10;
+2.3
+SELECT rodzaj, COUNT(DISTINCT(nazwa)) FROM zasob GROUP BY rodzaj HAVING SUM(ilosc)>1 ;
+
+PIEPRZ 
+3.1
+SELECT SUM(ekwipunek.ilosc), kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury GROUP BY kreatura.nazwa;
+3.2
+SELECT kreatura.nazwa, zasob.nazwa FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu;
+3.3
+SELECT kreatura.nazwa, ekwipunek.idEkwipunku FROM kreatura LEFT JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury WHERE ekwipunek.idEkwipunku IS NULL; 
+
+DZIADEK
+4.1
+SELECT kreatura.nazwa, ekwipunek.idZasobu,zasob.nazwa FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.IdKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj like "wiking" AND kreatura.dataUr BETWEEN 1670-01-01 AND 1679-01-01;
+4.2
+SELECT kreatura.nazwa FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idEkwipunku WHERE zasob.rodzaj = 'jedzenie' ORDER BY dataUr ASC LIMIT 5;
+4.3
+SELECT Concat(kreatura.nazwa,'-',Creature.nazwa) FROM kreatura JOIN kreatura as Creat
+ure ON kreatura.idKreatury = Creature.idKreatury WHERE kreatura.idKreatury = Creature.idKreatury +5;
+
+ZŁA NOWINA
+5.1
+SELECT kreatura.rodzaj,AVG(ekwipunek.ilosc*zasob.waga) as Srednia_waga_zasobow FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj NOT LIKE "malpa" AND kreatura.rodzaj NOT LIKE "waz" AND ekwipunek.ilosc < 30 GROUP BY kreatura.rodzaj;
+5.2
+ SELECT kreatura.nazwa,kreatura.rodzaj,kreatura.dataUr as Najmlodszy,Creature.dataUr as Najstarszy FROM kreatura JOIN kreatura as Creature ON kreatura.idKreatury = Creature.idKreatury;
