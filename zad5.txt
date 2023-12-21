@@ -1,0 +1,3 @@
+2.1.SELECT wyprawa.nazwa, kreatura.nazwa FROM wyprawa INNER  JOIN uczestnicy ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy INNER JOIN kreatura ON uczestnicy.id_uczestnika=idKreatury;
+ 2.2SELECT etapy_wyprawy.idEtapu,etapy_wyprawy.idWyprawy,etapy_wyprawy.sektor,etapy_wyprawy.kolejnosc,etapy_wyprawy.dziennik,wyprawa.nazwa AS nazwa_wyprawy,wyprawa.data_rozpoczecia,wyprawa.data_zakonczenia,wyprawa.kierownik,sektor.nazwa AS nazwa_sektora FROM etapy_wyprawy JOIN wyprawa ON etapy_wyprawy.idWyprawy=wyprawa.id_wyprawy JOIN sektor ON etapy_wyprawy.sektor=sektor.id_sektora ORDER BY wyprawa.data_rozpoczecia ASC,etapy_wyprawy.kolejnosc ASC;
+
